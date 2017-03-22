@@ -5,23 +5,22 @@
 Circle::Circle()
 {}
 
-Circle::Circle(QList<Dot *> listOfDots)
+Circle::Circle(QList<Dot*> listOfDots)
 {
     for(int i = 0; i < listOfDots.size(); i++){
         this->dotsInCircle.push_back(listOfDots[i]);
     }
 }
 
-void Circle::createCircle(int radius, Dot center)
+Circle::Circle(int radius, Dot* center)
 {
     for(int i = 0; i < 2000; i++){
-        qDebug() << "creating";
         Dot *toAdd = new Dot;
-        toAdd->setDotX(center.getDotX() + radius * qCos((2 * M_PI * i) / 2000));
-        toAdd->setDotZ(center.getDotZ() + radius * qSin((2 * M_PI * i) / 2000));
-        toAdd->setDotY(center.getDotY());
+        toAdd->setDotX(center->getDotX() + radius * qCos((2 * M_PI * i) / 2000));
+        toAdd->setDotZ(center->getDotZ() + radius * qSin((2 * M_PI * i) / 2000));
+        toAdd->setDotY(center->getDotY());
         dotsInCircle.push_back(toAdd);
-        //qDebug() << dotsInCircle[i]->getDotX() << "|" << dotsInCircle[i]->getDotY() << "|" << dotsInCircle[i]->getDotZ() << "*";
+        qDebug() << dotsInCircle[i]->getDotX() << "|" << dotsInCircle[i]->getDotY() << "|" << dotsInCircle[i]->getDotZ() << "*";
 
     }
 }

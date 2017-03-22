@@ -3,10 +3,16 @@
 CuttedCone::CuttedCone()
 {}
 
-CuttedCone::CuttedCone(Circle topInput, Circle bottomInput)
+CuttedCone::CuttedCone(Dot *center, double radius1, double radius2, double heights)
 {
-    this->top = topInput;
-    this->bottom = bottomInput;
+    Circle *b = new Circle(radius1, center);
+    qDebug() << "///////////////////////";
+    Dot *anotherCenter = new Dot(center->getDotX(), center->getDotY() + heights, center->getDotZ());
+    Circle *t = new Circle(radius2, anotherCenter);
+    bottom = *b;
+    top = *t;
+qDebug() << "cone constructor";
+qDebug() << "creating";
 }
 
 void CuttedCone::setTop(Circle toTop)

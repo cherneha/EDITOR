@@ -11,7 +11,7 @@ class CuttedCone
     Circle top;
 public:
     CuttedCone();
-    CuttedCone(Circle topInput, Circle bottomInput);
+    CuttedCone(Dot *center, double radius1, double radius2, double heights);
     void setTop(Circle toTop);
     void setBottom(Circle toBottom);
     void drawCuttedCone();

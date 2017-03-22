@@ -14,7 +14,7 @@ class Circle
 public:
     Circle();
     Circle(QList <Dot*> listOfDots);
-    void createCircle(int radius, Dot center);
+    Circle(int radius, Dot *center);
     QList <Dot*> getCircle();
     void paintCircle();
 };
