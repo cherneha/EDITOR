@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "theglwidget.h"
 //#include "ui_mainwindow.h"
+#include <string>
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,7 @@ private:
 private slots:
     void resendValues();
     void resendValuesPrism();
+    void labelEdit(int);
 };
 
 #endif // MAINWINDOW_H

@@ -11,8 +11,10 @@ CuttedCone::CuttedCone(Dot *center, double radius1, double radius2, double heigh
     Circle *t = new Circle(radius2, anotherCenter);
     bottom = *b;
     top = *t;
-qDebug() << "cone constructor";
-qDebug() << "creating";
+    r1 = radius1;
+    r2 = radius2;
+//qDebug() << "cone constructor";
+//qDebug() << "creating";
 }
 
 void CuttedCone::setTop(Circle toTop)
@@ -25,8 +27,9 @@ void CuttedCone::setBottom(Circle toBottom)
     this->bottom = toBottom;
 }
 
-void CuttedCone::drawCuttedCone()
+void CuttedCone::drawCuttedCone(QList <double> colors)
 {\
+    //glColor4f(colors[0], color[1], colors[2], colors[3]);
     this->top.paintCircle();
     this->bottom.paintCircle();
 
@@ -36,4 +39,9 @@ void CuttedCone::drawCuttedCone()
         glVertex3f((this->top.getCircle()).at(i)->getDotX(), (this->top.getCircle()).at(i)->getDotY(), (this->top.getCircle()).at(i)->getDotZ());
     }
     glEnd();
+}
+
+double CuttedCone::getMinX()
+{
+    this->bottom.getCircle();
 }

@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->pushButton_2, SIGNAL(clicked(bool)), this, SLOT(resendValues()));
     connect(ui->pushButton_3, SIGNAL(clicked(bool)), this, SLOT(resendValuesPrism()));
+    connect(ui->openGLWidget, SIGNAL(changeLabel(int)), this, SLOT(labelEdit(int)));
 }
 
 MainWindow::~MainWindow()
@@ -28,4 +29,9 @@ void MainWindow::resendValuesPrism()
     Dot *p4 = new Dot(ui->dot4X->value(), ui->dot4Y->value(), ui->dot4Z->value());
     Prism *toAdd = new Prism(p1, p2, p3, p4, ui->prismHeights->value());
     emit ui->openGLWidget->addPrism(toAdd);
+}
+
+void MainWindow::labelEdit(int p)
+{
+    ui->info->setText("it passes");
 }

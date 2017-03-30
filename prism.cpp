@@ -15,8 +15,9 @@ Prism::Prism(Dot *base1, Dot *base2, Dot *base3, Dot *base4, int h)
     this->heigth = h;
 }
 
-void Prism::DrawPrism()
+void Prism::DrawPrism(QList <double> colors)
 {
+    //glColor4f(colors[0], color[1], colors[2], colors[3]);
     if(base.size() == 4){
 
         Dot *top1 = new Dot(base[0]->getDotX(), base[0]->getDotY() - heigth, base[0]->getDotZ());

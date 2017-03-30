@@ -20,7 +20,7 @@ Circle::Circle(int radius, Dot* center)
         toAdd->setDotZ(center->getDotZ() + radius * qSin((2 * M_PI * i) / 2000));
         toAdd->setDotY(center->getDotY());
         dotsInCircle.push_back(toAdd);
-        qDebug() << dotsInCircle[i]->getDotX() << "|" << dotsInCircle[i]->getDotY() << "|" << dotsInCircle[i]->getDotZ() << "*";
+        //qDebug() << dotsInCircle[i]->getDotX() << "|" << dotsInCircle[i]->getDotY() << "|" << dotsInCircle[i]->getDotZ() << "*";
 
     }
 }
