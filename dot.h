@@ -2,7 +2,8 @@
 #define DOT_H
 
 #include <QOpenGLWidget>
-
+#include "QtMath"
+#include <QDebug>
 
 class Dot
 {
@@ -19,7 +20,10 @@ public:
     void setDotY(GLfloat yInput);
     void setDotZ(GLfloat zInput);
     void paintDot();
-
+    void rotateY(int degree);
+    void rotateX(int degree);
+    void rotateZ(int degree);
+    void resize(Dot *A, bool plus, GLfloat increase);
 };
 
 #endif // DOT_H

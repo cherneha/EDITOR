@@ -19,7 +19,9 @@
 #include <QMouseEvent>
 #include <vector>
 #include <string>
-
+#include <QDrag>
+#include "QtMath"
+#include <QPoint>
 
 
 class TheGLWidget : public QOpenGLWidget
@@ -30,24 +32,33 @@ class TheGLWidget : public QOpenGLWidget
     GLfloat zLength;
 public:
     friend class MainWindow;
-    bool mouseClick;
     QList <Prism*> currentPrisms;
     QList <CuttedCone*> currentCones;
-    QList <double> colors;
+    QList <int> chosenIndices;
+    QPoint *dragStartPosition;
+    bool dragdrop = false;
+
     explicit TheGLWidget(QWidget *parent = 0);
     void initializeGL();
     void resizeGL(int w, int h);
     void paintGL();
 
+    void mouseDoubleClickEvent(QMouseEvent *event);
     void drawFigures();
     void move(QKeyEvent *pressedKey);
     void setScreenSizes(GLfloat x, GLfloat y, GLfloat z);
     void drawAxes();
     void mousePressEvent(QMouseEvent *event);
-    void changeColors(double r, double g, double b, double alpha);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void changeColors(QList <float> *colors);
 public slots:
     void addPrism(Prism *toAdd);
     void addNewCone(double x, double y, double z, double t, double b,  double heights);
+    void rotateChosenYAxis(int degree);
+    void rotateChosenXAxis(int degree);
+    void rotateChosenZAxis(int degree);
+    void changeSize(bool plus);
 signals:
     void changeLabel(int index);
 };

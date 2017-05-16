@@ -5,6 +5,8 @@
 #include "theglwidget.h"
 //#include "ui_mainwindow.h"
 #include <string>
+#include <QColor>
+#include <QColorDialog>
 
 namespace Ui {
 class MainWindow;
@@ -31,6 +33,12 @@ private slots:
     void resendValues();
     void resendValuesPrism();
     void labelEdit(int);
+    void resendDegreeY();
+    void resendDegreeX();
+    void resendDegreeZ();
+    void on_color_clicked();
+    void on_ResizePlus_clicked();
+    void on_ResizeMinus_clicked();
 };
 
 #endif // MAINWINDOW_H

@@ -5,31 +5,37 @@ CuttedCone::CuttedCone()
 
 CuttedCone::CuttedCone(Dot *center, double radius1, double radius2, double heights)
 {
+    ConesColors.push_back(0.0);
+    ConesColors.push_back(0.0);
+    ConesColors.push_back(0.5);
+    ConesColors.push_back(0.5);
+//    ConesColors[0] = ConesColors[1] = 0;
+//    ConesColors[2] = ConesColors[3] = 1;
     Circle *b = new Circle(radius1, center);
-    qDebug() << "///////////////////////";
+    h = heights;
     Dot *anotherCenter = new Dot(center->getDotX(), center->getDotY() + heights, center->getDotZ());
     Circle *t = new Circle(radius2, anotherCenter);
     bottom = *b;
     top = *t;
     r1 = radius1;
     r2 = radius2;
-//qDebug() << "cone constructor";
-//qDebug() << "creating";
 }
 
-void CuttedCone::setTop(Circle toTop)
+void CuttedCone::setTop(Circle *toTop)
 {
-    this->top = toTop;
+    this->top = *toTop;
 }
 
-void CuttedCone::setBottom(Circle toBottom)
+void CuttedCone::setBottom(Circle *toBottom)
 {
-    this->bottom = toBottom;
+    this->bottom = *toBottom;
 }
 
-void CuttedCone::drawCuttedCone(QList <double> colors)
+void CuttedCone::drawCuttedCone()
 {\
-    //glColor4f(colors[0], color[1], colors[2], colors[3]);
+
+    qDebug() << ConesColors[0] << "/" << ConesColors[1] << "/" << ConesColors[2] << "/" << ConesColors[3];
+    glColor4f(ConesColors[0], ConesColors[1], ConesColors[2], ConesColors[3]);
     this->top.paintCircle();
     this->bottom.paintCircle();
 
@@ -41,7 +47,67 @@ void CuttedCone::drawCuttedCone(QList <double> colors)
     glEnd();
 }
 
-double CuttedCone::getMinX()
+Dot* CuttedCone::getBottom()
 {
-    this->bottom.getCircle();
+    return this->bottom.getCenter();
+}
+
+Dot* CuttedCone::getTop()
+{
+    return this->top.getCenter();
+}
+
+int CuttedCone::getRadiusBottom()
+{
+    return this->r1;
+}
+
+int CuttedCone::getRadiusTop()
+{
+    return this->r2;
+}
+
+QList<float> CuttedCone::getColors()
+{
+    return ConesColors;
+}
+
+void CuttedCone::changeColors(QList<float> *colors)
+{
+    this->ConesColors = *colors;
+}
+
+void CuttedCone::rotateY(int degree)
+{
+    this->top.rotateDotsY(degree);
+    this->bottom.rotateDotsY(degree);
+}
+
+void CuttedCone::rotateX(int degree)
+{
+    this->top.rotateDotsX(degree);
+    this->bottom.rotateDotsX(degree);
+}
+
+void CuttedCone::rotateZ(int degree)
+{
+    this->top.rotateDotsZ(degree);
+    this->bottom.rotateDotsZ(degree);
+}
+
+void CuttedCone::resizeCone(bool PlusOrMinus)
+{
+    GLfloat h = distance(this->bottom.getCenter(), this->top.getCenter());
+    this->bottom.getCenter()->resize(top.getCenter(), PlusOrMinus, 1);
+    this->top.getCenter()->resize(bottom.getCenter(), PlusOrMinus, 1);
+    GLfloat hNew = distance(this->bottom.getCenter(), this->top.getCenter());
+
+    this->top.rewriteCircle(this->top.getRadius() * (hNew/h));
+    this->bottom.rewriteCircle(this->bottom.getRadius() * (hNew/h));
+}
+
+
+GLfloat CuttedCone::distance(Dot *a, Dot *b)
+{
+    return qSqrt(qPow(a->getDotX() - b->getDotX(), 2) + qPow(a->getDotY() - b->getDotY(), 2) + qPow(a->getDotZ() - b->getDotZ(), 2));
 }
