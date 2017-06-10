@@ -8,9 +8,8 @@ CuttedCone::CuttedCone(Dot *center, double radius1, double radius2, double heigh
     ConesColors.push_back(0.0);
     ConesColors.push_back(0.0);
     ConesColors.push_back(0.5);
-    ConesColors.push_back(0.5);
-//    ConesColors[0] = ConesColors[1] = 0;
-//    ConesColors[2] = ConesColors[3] = 1;
+    ConesColors.push_back(0.3);
+
     Circle *b = new Circle(radius1, center);
     h = heights;
     Dot *anotherCenter = new Dot(center->getDotX(), center->getDotY() + heights, center->getDotZ());
@@ -33,8 +32,6 @@ void CuttedCone::setBottom(Circle *toBottom)
 
 void CuttedCone::drawCuttedCone()
 {\
-
-    qDebug() << ConesColors[0] << "/" << ConesColors[1] << "/" << ConesColors[2] << "/" << ConesColors[3];
     glColor4f(ConesColors[0], ConesColors[1], ConesColors[2], ConesColors[3]);
     this->top.paintCircle();
     this->bottom.paintCircle();
@@ -67,6 +64,11 @@ int CuttedCone::getRadiusTop()
     return this->r2;
 }
 
+int CuttedCone::getHeights()
+{
+    return this->h;
+}
+
 QList<float> CuttedCone::getColors()
 {
     return ConesColors;
@@ -81,6 +83,11 @@ void CuttedCone::rotateY(int degree)
 {
     this->top.rotateDotsY(degree);
     this->bottom.rotateDotsY(degree);
+
+    this->bottom.getCenter()->setDotX( (bottom.getCircle()[bottom.getCircle().size() - 1]->getDotX() - bottom.getCircle()[bottom.getCircle().size()/2]->getDotX())/2);
+    this->bottom.getCenter()->setDotY( (bottom.getCircle()[bottom.getCircle().size() - 1]->getDotY() - bottom.getCircle()[bottom.getCircle().size()/2]->getDotY())/2);
+    this->bottom.getCenter()->setDotZ( (bottom.getCircle()[bottom.getCircle().size() - 1]->getDotZ() - bottom.getCircle()[bottom.getCircle().size()/2]->getDotZ())/2);
+
 }
 
 void CuttedCone::rotateX(int degree)
@@ -104,6 +111,10 @@ void CuttedCone::resizeCone(bool PlusOrMinus)
 
     this->top.rewriteCircle(this->top.getRadius() * (hNew/h));
     this->bottom.rewriteCircle(this->bottom.getRadius() * (hNew/h));
+
+    this->h = hNew;
+    this->r1 = this->bottom.getRadius() * (hNew/h);
+    this->r2 = this->top.getRadius() * (hNew/h);
 }
 
 

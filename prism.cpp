@@ -114,13 +114,19 @@ void Prism::resize(bool plus)
     base[0]->resize(center1, plus, 1);
     base[2]->resize(center1, plus, 1);
 
-    GLfloat diagon = distance1 * distance(base[0], base[2]) / distance2;
+    GLfloat diagon = distance1 / distance(base[0], base[2]) * distance2;
 
-    base[1]->resize(center1, plus, abs(diagon - distance2));
-    base[3]->resize(center2, plus, abs(diagon - distance2));
+    base[1]->resize(center1, plus, abs(diagon - distance2)/2);
+    base[3]->resize(center2, plus, abs(diagon - distance2)/2);
 
-    GLfloat h = distance1 * distance(base[0], base[2]) / this->heigth;
+
+    GLfloat h = distance(base[0], base[2]) / distance1 * this->heigth;
     this->heigth += (h - this->heigth);
+}
+
+int Prism::getHeights()
+{
+    return this->heigth;
 }
 
 GLfloat Prism::distance(Dot *a, Dot *b)

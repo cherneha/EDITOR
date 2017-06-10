@@ -24,6 +24,7 @@ public:
     Dot* getTop();
     int getRadiusBottom();
     int getRadiusTop();
+    int getHeights();
     QList<float> getColors();
     void changeColors(QList <float> *colors);
     void rotateY(int degree);

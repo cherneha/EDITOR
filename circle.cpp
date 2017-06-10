@@ -64,6 +64,7 @@ void Circle::rotateDotsX(int degree)
     for(int i = 0; i < this->dotsInCircle.size(); i++){
         dotsInCircle[i]->rotateX(degree);
     }
+
 }
 
 void Circle::rotateDotsZ(int degree)

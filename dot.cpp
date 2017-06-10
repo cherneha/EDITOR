@@ -58,6 +58,7 @@ void Dot::rotateY(int degree)
     x = nX;
     y = nY;
     z = nZ;
+
 }
 
 void Dot::rotateX(int degree)
@@ -69,6 +70,7 @@ void Dot::rotateX(int degree)
     x = nX;
     y = nY;
     z = nZ;
+
 }
 
 void Dot::rotateZ(int degree)
@@ -80,6 +82,7 @@ void Dot::rotateZ(int degree)
     x = nX;
     y = nY;
     z = nZ;
+    qDebug() << "x = " << nX << "/ y = " << nY << "/ z = " << nZ;
 }
 
 void Dot::resize(Dot *A, bool plus, GLfloat increase)
@@ -100,6 +103,24 @@ void Dot::resize(Dot *A, bool plus, GLfloat increase)
     this->x = A->x - ABShtrih->x;
     this->y = A->y - ABShtrih->y;
     this->z = A->z - ABShtrih->z;
+    qDebug() << "x = " << x << "/ y = " << y << "/ z = " << z;
+}
 
+Dot *Dot::xProj()
+{
+    Dot *r = new Dot(this->x, 0, this->z);
+    return r;
+}
+
+Dot *Dot::yProj()
+{
+    Dot *r = new Dot(this->x,  this->y, 0);
+    return r;
+}
+
+Dot *Dot::zProj()
+{
+    Dot *r = new Dot(0, this->y, this->z);
+    return r;
 }
 

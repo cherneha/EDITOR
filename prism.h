@@ -23,6 +23,7 @@ public:
     void setColors(QList <float> colors);
     Dot *findLineCenter(Dot *a, Dot *b);
     void resize(bool plus);
+    int getHeights();
     GLfloat distance(Dot *a, Dot *b);
 };
 

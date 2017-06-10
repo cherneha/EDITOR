@@ -24,6 +24,9 @@ public:
     void rotateX(int degree);
     void rotateZ(int degree);
     void resize(Dot *A, bool plus, GLfloat increase);
+    Dot *xProj();
+    Dot* yProj();
+    Dot *zProj();
 };
 
 #endif // DOT_H
