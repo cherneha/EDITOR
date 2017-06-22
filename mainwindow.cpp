@@ -79,7 +79,7 @@ void MainWindow::on_ResizeMinus_clicked()
     emit ui->openGLWidget->changeSize(0);
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_restoreFromDB_clicked()
 {
     // file open dialog
 

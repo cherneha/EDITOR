@@ -477,7 +477,7 @@
      <string>-</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="restoreFromDB">
     <property name="geometry">
      <rect>
       <x>20</x>

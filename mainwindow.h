@@ -41,7 +41,7 @@ private slots:
     void on_color_clicked();
     void on_ResizePlus_clicked();
     void on_ResizeMinus_clicked();
-    void on_pushButton_clicked();
+    void on_restoreFromDB_clicked();
 };
 
 #endif // MAINWINDOW_H
